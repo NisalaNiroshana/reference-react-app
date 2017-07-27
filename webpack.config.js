@@ -1,5 +1,5 @@
 const path = require('path');
-const webpack = require('webpack');
+
 module.exports = {
     context: path.resolve(__dirname, './src'),
     entry: {
@@ -24,7 +24,7 @@ module.exports = {
                     {
                         loader: 'babel-loader',
                         query: {
-                            presets: ['es2015', 'react']
+                            presets: ['es2015', 'react'],
                         },
                     },
                 ],
@@ -38,12 +38,12 @@ module.exports = {
                 exclude: /(node_modules)/,
                 loader: 'babel-loader',
                 query: {
-                    presets: ['es2015', 'react']
-                }
+                    presets: ['es2015', 'react'],
+                },
             },
             {
                 test: /\.css$/,
-                use: ['style-loader', 'css-loader']
+                use: ['style-loader', 'css-loader'],
             },
             {
                 test: /\.scss$/,
@@ -54,15 +54,19 @@ module.exports = {
                 }, {
                     loader: "sass-loader"
                 }]
+            },
+            {
+                test: /\.(js|jsx)$/,
+                exclude: /node_modules/,
+                loader: 'eslint-loader',
             }
-
         ]
     },
     resolve: {
         extensions: ['.js', '.json', '.jsx','.scss'],
     },
     devServer: {
-        contentBase: path.join(__dirname, "public"),
-        publicPath: '/dist/'
-    }
+        contentBase: path.join(__dirname, 'public'),
+        publicPath: '/dist/',
+    },
 };
